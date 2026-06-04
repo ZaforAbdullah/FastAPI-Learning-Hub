@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <!-- Static file URL using Jinja2 url_for() — maps to /static/style.css -->
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>{{ title }}</h1>
+    <nav>
+      <a href="/docs">Swagger UI</a> |
+      <a href="/redoc">ReDoc</a> |
+      <a href="/web/">Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>FastAPI Learning Project</h2>
+      <p>A comprehensive demo of FastAPI features. Explore the interactive docs at <a href="/docs">/docs</a>.</p>
+    </section>
+
+    {% if features %}
+    <section class="card">
+      <h2>Features Demonstrated</h2>
+      <ul>
+        {% for feature in features %}
+        <li>{{ feature }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <section class="card">
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="/docs#/Core%20Concepts">Core Concepts</a> — path, query, body, headers</li>
+        <li><a href="/docs#/Authentication">Authentication</a> — JWT, OAuth2</li>
+        <li><a href="/docs#/Users">Users CRUD</a> — pagination, filtering</li>
+        <li><a href="/docs#/Advanced%20Features">Advanced</a> — cache, rate limit, streaming</li>
+        <li><a href="/docs#/WebSockets">WebSockets</a> — chat, live feed</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

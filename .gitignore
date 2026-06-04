@@ -1,0 +1,17 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Optional: virtual environments
+venv/
+.env
+
+# Optional: tooling caches
+.pytest_cache/
+.mypy_cache/
+
+# Uploads directory
+uploads
+
+# SQLite database file
+app.sqlite

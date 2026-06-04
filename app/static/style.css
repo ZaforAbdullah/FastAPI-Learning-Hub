@@ -1,0 +1,41 @@
+/* Static file served by FastAPI's StaticFiles mount */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background: #009688;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a { color: white; text-decoration: none; margin-left: 1rem; }
+header a:hover { text-decoration: underline; }
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h2 { margin-bottom: 0.75rem; color: #009688; }
+.card ul { padding-left: 1.25rem; }
+.card li { margin-bottom: 0.4rem; }
+.card a { color: #009688; }

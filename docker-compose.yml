@@ -1,0 +1,50 @@
+# CONCEPT: Docker Compose
+# ========================
+# Compose defines multi-container apps. Here: FastAPI app + PostgreSQL + Redis.
+# `docker compose up` starts everything; services communicate by service name.
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONPATH: /app
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/fastapi_db
+      REDIS_URL: redis://redis:6379
+      SECRET_KEY: change-me-in-production
+      DEBUG: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./uploads:/app/uploads  # persist uploaded files
+    restart: unless-stopped
+    # command: alembic stamp head && python -m app.seed
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fastapi_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
