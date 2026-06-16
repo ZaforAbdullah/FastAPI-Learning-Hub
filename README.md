@@ -1,4 +1,4 @@
-# FastAPI Learning Project
+# FastAPI Learning Hub
 
 A single codebase that covers every major FastAPI concept — organized in production-style layers so you can trace how a real request flows through the stack.
 
